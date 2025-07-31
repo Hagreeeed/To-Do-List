@@ -1,7 +1,5 @@
 package com.todolist.model;
 
-import java.lang.module.ModuleDescriptor;
-
 public class User {
     private int id;
     private String username;
@@ -24,15 +22,11 @@ public class User {
         return password;
     }
 
-    //Setter
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setUsername(String username){
-        this.username = username;
-    }
-    public void setPassword(String password){
-        this.password = password;
+    public User withoutPassword(){
+        return new Builder()
+                .id(this.id)
+                .username(this.username)
+                .build();
     }
 
     @Override
@@ -65,8 +59,8 @@ public class User {
         }
 
         public User build() {
-            if (username == null || password == null) {
-                throw new NullPointerException("Username and password cannot be null.");
+            if (username == null) {
+                throw new NullPointerException("Username cannot be null.");
             }
             return new User(this);
         }
