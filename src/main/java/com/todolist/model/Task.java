@@ -43,28 +43,7 @@ public class Task {
     public int getUserId(){
         return userId;
     }
-    // Setters
-    public void setId(int id){
-        this.id = id;
-    }
-    public void setTitle(String title){
-        this.title = title;
-    }
-    public void setDescription(String description){
-        this.description = description;
-    }
-    public void setDueDate(LocalDate dueDate){
-        this.dueDate = dueDate;
-    }
-    public void setPriority(int priority){
-        this.priority = priority;
-    }
-    public void setCompleted(boolean completed){
-        this.completed = completed;
-    }
-    public void setUserId(int userId){
-        this.userId = userId;
-    }
+
     // toString()
     @Override
     public String toString() {
@@ -113,7 +92,7 @@ public class Task {
         }
 
         public Task build(){
-            if(title == null || description == null || dueDate == null){
+            if(title == null || dueDate == null){
                 throw new NullPointerException("Missing required arguments Task model");
             }
             return new Task(this);

@@ -10,7 +10,14 @@ public class Database implements AutoCloseable {
     private final Connection conn;
 
     public Database() throws SQLException {
-        conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+        conn = DriverManager.getConnection("jdbc:sqlite:database/database.db");
+        if (conn != null) {
+            System.out.println("Database connection established");
+        }
+    }
+
+    public Connection getConnection(){
+        return conn;
     }
 
     public int executeUpdate(String query, Object... params) throws SQLException {
@@ -31,7 +38,7 @@ public class Database implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() throws SQLException {
         if(conn != null && !conn.isClosed()){
             conn.close();
             System.out.println("Connection closed");
