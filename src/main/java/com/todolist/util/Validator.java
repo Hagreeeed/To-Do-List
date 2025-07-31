@@ -4,6 +4,7 @@ public class Validator {
 
     public boolean validPassword(String password) {
         if (password.length() <= 8) {
+            System.out.println("Password too short");
             return false;
         }
 
@@ -24,6 +25,14 @@ public class Validator {
             if (hasUpperCase && hasSpecialChar) {
                 break;
             }
+        }
+
+        if (!hasUpperCase) {
+            System.out.println("Password must contain at least one uppercase letter");
+        }
+
+        if (!hasSpecialChar) {
+            System.out.println("Password must contain at least one special character");
         }
 
         return hasUpperCase && hasSpecialChar;
