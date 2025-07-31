@@ -1,13 +1,14 @@
 package com.todolist;
 
 import com.todolist.database.Database;
-import java.sql.Connection;
 import com.todolist.util.DatabaseInitializer;
 import java.sql.SQLException;
+import com.todolist.util.Validator;
 
 public class Main {
     public static void main(String[] args) {
-        initDb();
+        Validator validator = new Validator();
+        System.out.println(validator.validPassword("Q@"));
     }
 
     public static void initDb() {

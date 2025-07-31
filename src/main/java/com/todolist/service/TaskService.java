@@ -1,4 +1,4 @@
 package com.todolist.service;
 
-public class Service {
+public class TaskService {
 }
