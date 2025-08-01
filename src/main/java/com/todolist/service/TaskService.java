@@ -17,7 +17,7 @@ public class TaskService {
         this.taskDao = taskdao;
     }
 
-    public boolean createTask(String title, String description, LocalDate dueDate, int priority, boolean completed) {
+    public boolean createTask(String title, String description, String dueDate, int priority) {
         Optional<User> maybeUser = UserService.getCurrentUser();
 
         if (maybeUser.isEmpty()) {
@@ -32,7 +32,6 @@ public class TaskService {
                 .description(description)
                 .dueDate(dueDate)
                 .priority(priority)
-                .completed(completed)
                 .userId(currentUser.getId())
                 .build();
 
@@ -71,8 +70,7 @@ public class TaskService {
         }catch (SQLException e){
             System.out.println("SQLException: " + e.getMessage());
         }
-
-        return null;
+        return new ArrayList<>();
     }
 
 }

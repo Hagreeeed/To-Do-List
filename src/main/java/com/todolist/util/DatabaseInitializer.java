@@ -23,9 +23,9 @@ public class DatabaseInitializer {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT,
-            due_date DATE,
+            due_date TEXT,
             priority INTEGER,
-            completed BOOLEAN,
+            completed BOOLEAN DEFAULT FALSE,
             user_id INTEGER,
             FOREIGN KEY (user_id) REFERENCES users(id)
         );

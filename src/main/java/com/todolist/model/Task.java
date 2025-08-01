@@ -6,7 +6,7 @@ public class Task {
     private int id;
     private String title;
     private String description;
-    private LocalDate dueDate;
+    private String dueDate;
     private int priority;
     private boolean completed;
     private int userId;
@@ -31,7 +31,7 @@ public class Task {
     public String getDescription(){
         return description;
     }
-    public LocalDate getDueDate(){
+    public String getDueDate(){
         return dueDate;
     }
     public int getPriority(){
@@ -54,7 +54,7 @@ public class Task {
         private int id;
         private String title;
         private String description;
-        private LocalDate dueDate;
+        private String dueDate;
         private int priority;
         private boolean completed;
         private int userId;
@@ -74,7 +74,7 @@ public class Task {
             this.description = description;
             return this;
         }
-        public Builder dueDate(LocalDate dueDate){
+        public Builder dueDate(String dueDate){
             this.dueDate = dueDate;
             return this;
         }

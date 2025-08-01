@@ -29,7 +29,7 @@ public class TaskDao {
 
     public List<Task> getTasksByUserId(int user_id) throws SQLException {
         String sql = "SELECT * FROM tasks WHERE user_id = ?";
-        ResultSet rs = db.executeQuery(sql);
+        ResultSet rs = db.executeQuery(sql, user_id);
         List<Task> tasks = new ArrayList<>();
 
         while (rs.next()) {
@@ -37,7 +37,7 @@ public class TaskDao {
                     .id(rs.getInt("id"))
                     .title(rs.getString("title"))
                     .description(rs.getString("description"))
-                    .dueDate(rs.getDate("due_date") != null ? rs.getDate("due_date").toLocalDate() : null)
+                    .dueDate(rs.getString("due_date"))
                     .priority(rs.getInt("priority"))
                     .completed(rs.getBoolean("completed"))
                     .userId(user_id)
