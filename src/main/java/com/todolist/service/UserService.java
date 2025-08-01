@@ -6,11 +6,12 @@ import com.todolist.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class UserService {
     private final UserDao userDao;
     private final Validator validator;
-    private User user;
+    private static User user;
 
     public UserService(UserDao userDao, Validator validator) {
         this.userDao = userDao;
@@ -76,8 +77,11 @@ public class UserService {
 
     }
 
-    public User getCurrentUser() {
-        return user.withoutPassword();
+    public static Optional<User> getCurrentUser() {
+        if(user != null) {
+            return Optional.of(user);
+        }
+        return Optional.empty();
     }
 
     public String hashPassword (String password) {
