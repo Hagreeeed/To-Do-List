@@ -17,12 +17,17 @@ public class TaskDao {
         this.db = db;
     }
 
-    public void addNewTask(String title, String description, LocalDate dueDate, int priority, Boolean completed) throws SQLException {
-        String sql = "INSERT INTO tasks (title, description, due_date, priority, completed) VALUES (?, ?, ?, ?, ?)";
-        db.executeUpdate(sql, title, description, dueDate, priority, completed);
+    public void addNewTask(Task task) throws SQLException {
+        String sql = "INSERT INTO tasks (title, description, due_date, priority, completed, user_id) VALUES (?, ?, ?, ?, ?, ?)";
+        db.executeUpdate(sql, task.getTitle(), task.getDescription(), task.getDueDate(), task.getPriority(), task.isCompleted(), task.getUserId());
     }
 
-    public List<Task> getAllTasks(int user_id) throws SQLException {
+    public void deleteTask(int id) throws SQLException {
+        String sql = "DELETE FROM tasks WHERE id = ?";
+        db.executeUpdate(sql, id);
+    }
+
+    public List<Task> getTasksByUserId(int user_id) throws SQLException {
         String sql = "SELECT * FROM tasks WHERE user_id = ?";
         ResultSet rs = db.executeQuery(sql);
         List<Task> tasks = new ArrayList<>();
