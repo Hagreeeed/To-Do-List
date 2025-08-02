@@ -1,5 +1,6 @@
 package com.todolist.command;
 
-public interface Command {
-    void execute();
+
+public interface Command<T> {
+    T execute();
 }

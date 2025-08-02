@@ -64,17 +64,20 @@ public class UserService {
         }
     }
 
-    public void updatePassword(String username, String newPassword, String oldPassword) {
+    public boolean updatePassword(String username, String newPassword, String oldPassword) {
         try {
             if (user != null && validator.validPassword(newPassword) && checkPassword(oldPassword, user.getPassword())) {
                 String hash = hashPassword(newPassword);
                 userDao.updatePasswordByUsername(username, hash);
                 System.out.println("Password updated successfully");
+                return true;
             }
         }catch (SQLException e) {
             System.err.println("Error during updatePassword: " + e.getMessage());
+            return false;
         }
 
+        return false;
     }
 
     public static Optional<User> getCurrentUser() {

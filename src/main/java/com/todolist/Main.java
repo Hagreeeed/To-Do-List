@@ -22,7 +22,7 @@ public class Main {
         TaskService taskService = new TaskService(taskDao);
         List<Task> tasks = new ArrayList<>();
 
-        taskService.deleteTask(3);
+
     }
 
     public static void initDb() {
